@@ -1,7 +1,9 @@
+import java.lang.String;
+import java.util.Vector;
 
 public class Test_Ascii {
 
-	public static void main(String[] args) 
+	/*public static void main(String[] args) 
 	{
 		for(int i = 0; i < Ascii_Vigner_Cipher.VIGNERE.length; i++)
 		{
@@ -12,6 +14,14 @@ public class Test_Ascii {
 			System.out.print('\n');
 		}
 		System.out.print(Ascii_Vigner_Cipher.VIGNERE.length);
+	}*/
+	
+	public static void main(String[] args) 
+	{
+		String start = "NO, THIS IS PATRICK!!!!";
+		Vector<Character> key = new Vector<Character>();
+		key = Ascii_Vigner_Cipher.encode(start);
+		System.out.println(key);
 	}
 
 }
