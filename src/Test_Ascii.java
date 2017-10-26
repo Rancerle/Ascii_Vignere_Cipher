@@ -3,25 +3,24 @@ import java.util.Vector;
 
 public class Test_Ascii {
 
-	/*public static void main(String[] args) 
-	{
-		for(int i = 0; i < Ascii_Vigner_Cipher.VIGNERE.length; i++)
-		{
-			for(int j = 0; j < Ascii_Vigner_Cipher.VIGNERE.length; j++)
-			{
-				System.out.print(Ascii_Vigner_Cipher.VIGNERE[i][j] + " ");
-			}
-			System.out.print('\n');
-		}
-		System.out.print(Ascii_Vigner_Cipher.VIGNERE.length);
-	}*/
-	
 	public static void main(String[] args) 
 	{
 		String start = "NO, THIS IS PATRICK!!!!";
-		Vector<Character> key = new Vector<Character>();
-		key = Ascii_Vigner_Cipher.encode(start);
-		System.out.println(key);
+		String cipher = "";
+		String plain = "";
+		char[] key;
+		
+		
+		key = Ascii_Vigner_Cipher.createKey(start);
+		System.out.println(key.toString());
+		
+		cipher = Ascii_Vigner_Cipher.encrypt(key, start);
+		
+		plain = Ascii_Vigner_Cipher.decrypt(key, cipher);
+		
+		System.out.println(start);
+		System.out.println(cipher);
+		System.out.println(plain);
 	}
 
 }

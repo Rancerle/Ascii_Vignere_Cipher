@@ -99,15 +99,67 @@ public class Ascii_Vigner_Cipher
 			   								 {'~', ' ', '!', '\"', '#', '$', '%', '&', '`', '(', ')', '*', '+', '\'', '-', '.', '/', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ':', ';', '<', '=', '>', '?', '@', 'A', 'B', 'C', 'D', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '[', '\\', ']', '^', '_', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '{', '|', '}'}};
 
 
-	public static Vector encode(String plainText)
+	public static char[] createKey(String plainText)
 	{
-		Vector<Character> cryptKey = new Vector<Character>();
+		char[] cryptKey = plainText.toCharArray();
 		Random rand = new Random();
 		
 		for(int i = 0; i < plainText.length(); i++)
 		{
-			cryptKey.add(VIGNERE[0][rand.nextInt(VIGNERE.length - 1) + 0]);
+			cryptKey[i] = VIGNERE[0][rand.nextInt(VIGNERE.length - 1) + 0];
 		}
 		return cryptKey;	
+	}
+	
+	public static String encrypt(char[] key, String plainText) 
+	{
+		char[] cipherText = plainText.toCharArray();
+		
+		for(int i = 0; i < plainText.length(); i++)
+		{
+			for(int j = 0; j < VIGNERE.length; j++)
+			{
+				for(int k = 0; k < key.length; k++)
+				{
+					for(int l = 0; l < VIGNERE.length; l++)
+					{
+						if((cipherText[i] == VIGNERE[j][0]) && (key[k] == (Character)VIGNERE[0][l]))
+						{
+							cipherText[i] = VIGNERE[j][l];
+						}
+					}
+				}
+			}
+		}
+		
+		plainText = cipherText.toString();
+		
+		return plainText;
+	}
+	
+	public static String decrypt(char[] key, String cipherText) 
+	{
+		char[] plainText = cipherText.toCharArray();
+		
+		for(int i = 0; i < cipherText.length(); i++)
+		{
+			for(int j = 0; j < VIGNERE.length; j++)
+			{
+				for(int k = 0; k < key.length; k++)
+				{
+					for(int l = 0; l < VIGNERE.length; l++)
+					{
+						if((plainText[i] == VIGNERE[VIGNERE.length - j][0]) && (key[k] == (Character)VIGNERE[0][l]))
+						{
+							plainText[i] = VIGNERE[VIGNERE. length - j][l];
+						}
+					}
+				}
+			}
+		}
+		
+		cipherText = plainText.toString();
+		
+		return cipherText;
 	}
 }
